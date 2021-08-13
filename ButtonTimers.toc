@@ -1,0 +1,29 @@
+## Interface: 90100
+## Title: ButtonTimers
+## Notes: Action bars, with timers
+## Author: Misen, Stencil
+## SavedVariables: ButtonTimersDB
+## Version: 2.7.07
+## OptionalDeps: Ace3, LibDualSpec-1.0, LibSharedMedia-3.0, AceGUI-3.0-SharedMediaWidgets, Masque
+
+#@no-lib-strip@
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Libs\AceAddon-3.0\AceAddon-3.0.xml
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\AceConfig-3.0\AceConfig-3.0.xml
+Libs\AceConsole-3.0\AceConsole-3.0.xml
+Libs\AceDB-3.0\AceDB-3.0.xml
+Libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
+Libs\AceEvent-3.0\AceEvent-3.0.xml
+Libs\AceLocale-3.0\AceLocale-3.0.xml
+Libs\LibDualSpec-1.0\LibDualSpec-1.0.lua
+Libs\LibSharedMedia-3.0\lib.xml
+Libs\AceGUI-3.0-SharedMediaWidgets\widget.xml
+#@end-no-lib-strip@
+
+ButtonTimers.xml
+locale\locale.xml
+
+Core.lua
+Defaults.lua

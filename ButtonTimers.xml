@@ -1,0 +1,39 @@
+<!-- <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd" xmlns="http://www.blizzard.com/wow/ui/">-->
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+ http://wowprogramming.com/FrameXML/UI.xsd"> 	
+ <Frame  name="ABTButtonTemplate" virtual="true" id="0">
+	<Size>
+		<AbsDimension x="36" y="36" /> 
+	</Size>
+	<Frames>
+		<CheckButton name="$parentButton" inherits="ActionBarButtonTemplate" id="0">
+			<Anchors>
+				<Anchor point="CENTER"/>
+			</Anchors>
+			<Layers>
+				<Layer level="ARTWORK">
+					<Texture name="$parentTint" hidden="true" /> 
+					<FontString name="$parentTimer" inherits="GameFontNormalLarge" /> 
+				</Layer>
+			</Layers>
+			<Frames>
+				<Frame name="$parentStatusBar">
+					<Layers>
+						<Layer level="ARTWORK">
+							<Texture name="$parentTex" file="Interface\TargetingFrame\UI-StatusBar" /> 
+							<FontString name="$parentCountdown" inherits="GameFontNormalLarge" text="" /> 
+							<FontString name="$parentSpellName" inherits="GameFontNormalLarge">
+								<Anchors>
+									<Anchor point="LEFT" relativePoint="LEFT">
+										<Offset x="60" y="0" /> 
+									</Anchor>
+								</Anchors>
+							</FontString>
+						</Layer>
+					</Layers>
+				</Frame>
+			</Frames>
+		</CheckButton>
+	</Frames>
+</Frame>
+</Ui>
