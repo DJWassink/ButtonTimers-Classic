@@ -13,7 +13,7 @@ local _G, ABT, LibStub, DEFAULT_CHAT_FRAME, UIParent = _G, ABT, LibStub, DEFAULT
 local math, min, modf, print, setglobal, type = math, math.min, math.modf, print, setglobal, type
 local ipairs, next, pairs, rawset, select, setmetatable, tinsert, unpack = ipairs, next, pairs, rawset, select, setmetatable, tinsert, unpack
 local format, gmatch, gsub, strfind, strmatch, tonumber, tostring = format, gmatch, gsub, strfind, strmatch, tonumber, tostring
-local CreateFrame, GameTooltip, GetActiveSpecGroup, GetNumGroupMembers, GetTime, InCombatLockdown, InterfaceOptionsFrame_OpenToCategory, IsInRaid, SecondsToTimeAbbrev, UnitBuff, UnitDebuff, UnitGUID, UnitName = CreateFrame, GameTooltip, GetActiveSpecGroup, GetNumGroupMembers, GetTime, InCombatLockdown, InterfaceOptionsFrame_OpenToCategory, IsInRaid, SecondsToTimeAbbrev, UnitBuff, UnitDebuff, UnitGUID, UnitName
+local ActionButton_OnEvent, CreateFrame, GameTooltip, GetActiveSpecGroup, GetNumGroupMembers, GetTime, InCombatLockdown, InterfaceOptionsFrame_OpenToCategory, IsInRaid, SecondsToTimeAbbrev, UnitBuff, UnitDebuff, UnitGUID, UnitName = ActionButton_OnEvent, CreateFrame, GameTooltip, GetActiveSpecGroup, GetNumGroupMembers, GetTime, InCombatLockdown, InterfaceOptionsFrame_OpenToCategory, IsInRaid, SecondsToTimeAbbrev, UnitBuff, UnitDebuff, UnitGUID, UnitName
 local GetActionCharges, GetActionCooldown, GetActionInfo, GetActionText, GetActionTexture, GetItemInfo, GetItemSpell, GetMacroItem, GetMacroSpell, GetSpellCharges, GetSpellCooldown, GetSpellInfo, GetTotemInfo = GetActionCharges, GetActionCooldown, GetActionInfo, GetActionText, GetActionTexture, GetItemInfo, GetItemSpell, GetMacroItem, GetMacroSpell, GetSpellCharges, GetSpellCooldown, GetSpellInfo, GetTotemInfo
 
 
@@ -907,16 +907,8 @@ function ABT:CompleteProfileMigration()
 			self.db:SetProfile(self.newProfileNames[2])
 		end
 
-		self.db:SetDualSpecEnabled(true)
-		self.db:SetDualSpecProfile(self.newProfileNames[offspec])
 		self.newProfileNames = nil
-
-		self:OutputProfileState()
 	end
-end
-
-function ABT:OutputProfileState()
-	print("current profile is:", self.db:GetCurrentProfile(), "  alt profile is:", self.db:GetDualSpecProfile())
 end
 
 function ABT:OnProfileChanged(event)
@@ -934,10 +926,6 @@ function ABT:OnInitialize()
 	self.db = LibStub("AceDB-3.0"):New("ButtonTimersDB")
 	-- Create the profile options and add them to our option table
 	options.args.profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db, true)
-	-- Add dual-spec support
-	local LibDualSpec = LibStub('LibDualSpec-1.0')
-	LibDualSpec:EnhanceDatabase(self.db, "ButtonTimers")
-	LibDualSpec:EnhanceOptions(options.args.profiles, self.db)
 
 	self:MigrateUserSettings()
 	self.db:RegisterDefaults(ABT:InitDefaults())
@@ -1021,7 +1009,6 @@ function ABT:OnEnable()
 	self:RegisterEvent ("PLAYER_TARGET_CHANGED", "MarkNeedDebuffs")
 	self:RegisterEvent ("PLAYER_FOCUS_CHANGED", "MarkNeedDebuffs")
 	self:RegisterEvent ("PLAYER_ENTERING_WORLD", "SetAllBars")
-	self:RegisterEvent ("PLAYER_TALENT_UPDATE", "SetAllBars")
 	self:RegisterEvent ("ACTIONBAR_UPDATE_COOLDOWN", "GetCooldowns")
 	self:RegisterEvent ("ACTIONBAR_UPDATE_USABLE", "GetCooldowns")
 	self:RegisterEvent ("GROUP_ROSTER_UPDATE", "UpdatePlayerTargets")
@@ -1083,7 +1070,7 @@ function ABT:ApplyDefault (event, slot)
         if slot == button.button:GetAttribute("action") then
             -- found one
             ABT:DebugPrint ("Slot "..slot.." used on bar="..barIdx.." button="..buttonIdx)
-            button.button:OnEvent(event, slot)
+			ActionButton_OnEvent(button, event, slot)
             
             local actionType, actionId = GetActionInfo(slot)
             -- only apply defaults if it actually changed
@@ -1134,7 +1121,6 @@ function ABT:OnDisable()
 	self:UnregisterEvent ("PLAYER_TARGET_CHANGED")
 	self:UnregisterEvent ("PLAYER_FOCUS_CHANGED")
 	self:UnregisterEvent ("PLAYER_ENTERING_WORLD")
-	self:UnregisterEvent ("PLAYER_TALENT_UPDATE")
 	self:UnregisterEvent ("ACTIONBAR_UPDATE_COOLDOWN")
 	self:UnregisterEvent ("ACTIONBAR_UPDATE_USABLE")
 	self:UnregisterEvent ("PARTY_MEMBERS_CHANGED")
