@@ -1,0 +1,54 @@
+<Bindings>
+	<Binding name="CLICK ABTWidbar1button1Button:LeftButton" description="Bar1Button1" header="ButtonTimersBar1" />
+	<Binding name="CLICK ABTWidbar1button2Button:LeftButton" description="Bar 1 Button 2" />
+	<Binding name="CLICK ABTWidbar1button3Button:LeftButton" description="Bar 1 Button 3" />
+	<Binding name="CLICK ABTWidbar1button4Button:LeftButton" description="Bar 1 Button 4" />
+	<Binding name="CLICK ABTWidbar1button5Button:LeftButton" description="Bar 1 Button 5" />
+	<Binding name="CLICK ABTWidbar1button6Button:LeftButton" description="Bar 1 Button 6" />
+	<Binding name="CLICK ABTWidbar1button7Button:LeftButton" description="Bar 1 Button 7" />
+	<Binding name="CLICK ABTWidbar1button8Button:LeftButton" description="Bar 1 Button 8" />
+	<Binding name="CLICK ABTWidbar1button9Button:LeftButton" description="Bar 1 Button 9" />
+	<Binding name="CLICK ABTWidbar1button10Button:LeftButton" description="Bar 1 Button 10" />
+	<Binding name="CLICK ABTWidbar1button11Button:LeftButton" description="Bar 1 Button 11" />
+	<Binding name="CLICK ABTWidbar1button12Button:LeftButton" description="Bar 1 Button 12" />
+
+	<Binding name="CLICK ABTWidbar2button1Button:LeftButton" description="Bar 2 Button 1" header="ButtonTimersBar2" />
+	<Binding name="CLICK ABTWidbar2button2Button:LeftButton" description="Bar 2 Button 2" />
+	<Binding name="CLICK ABTWidbar2button3Button:LeftButton" description="Bar 2 Button 3" />
+	<Binding name="CLICK ABTWidbar2button4Button:LeftButton" description="Bar 2 Button 4" />
+	<Binding name="CLICK ABTWidbar2button5Button:LeftButton" description="Bar 2 Button 5" />
+	<Binding name="CLICK ABTWidbar2button6Button:LeftButton" description="Bar 2 Button 6" />
+	<Binding name="CLICK ABTWidbar2button7Button:LeftButton" description="Bar 2 Button 7" />
+	<Binding name="CLICK ABTWidbar2button8Button:LeftButton" description="Bar 2 Button 8" />
+	<Binding name="CLICK ABTWidbar2button9Button:LeftButton" description="Bar 2 Button 9" />
+	<Binding name="CLICK ABTWidbar2button10Button:LeftButton" description="Bar 2 Button 10" />
+	<Binding name="CLICK ABTWidbar2button11Button:LeftButton" description="Bar 2 Button 11" />
+	<Binding name="CLICK ABTWidbar2button12Button:LeftButton" description="Bar 2 Button 12" />
+
+	<Binding name="CLICK ABTWidbar3button1Button:LeftButton" description="Bar 3 Button 1" header="ButtonTimersBar3" />
+	<Binding name="CLICK ABTWidbar3button2Button:LeftButton" description="Bar 3 Button 2" />
+	<Binding name="CLICK ABTWidbar3button3Button:LeftButton" description="Bar 3 Button 3" />
+	<Binding name="CLICK ABTWidbar3button4Button:LeftButton" description="Bar 3 Button 4" />
+	<Binding name="CLICK ABTWidbar3button5Button:LeftButton" description="Bar 3 Button 5" />
+	<Binding name="CLICK ABTWidbar3button6Button:LeftButton" description="Bar 3 Button 6" />
+	<Binding name="CLICK ABTWidbar3button7Button:LeftButton" description="Bar 3 Button 7" />
+	<Binding name="CLICK ABTWidbar3button8Button:LeftButton" description="Bar 3 Button 8" />
+	<Binding name="CLICK ABTWidbar3button9Button:LeftButton" description="Bar 3 Button 9" />
+	<Binding name="CLICK ABTWidbar3button10Button:LeftButton" description="Bar 3 Button 10" />
+	<Binding name="CLICK ABTWidbar3button11Button:LeftButton" description="Bar 3 Button 11" />
+	<Binding name="CLICK ABTWidbar3button12Button:LeftButton" description="Bar 3 Button 12" />
+
+	<Binding name="CLICK ABTWidbar4button1Button:LeftButton" description="Bar 4 Button 1" header="ButtonTimersBar4" />
+	<Binding name="CLICK ABTWidbar4button2Button:LeftButton" description="Bar 4 Button 2" />
+	<Binding name="CLICK ABTWidbar4button3Button:LeftButton" description="Bar 4 Button 3" />
+	<Binding name="CLICK ABTWidbar4button4Button:LeftButton" description="Bar 4 Button 4" />
+	<Binding name="CLICK ABTWidbar4button5Button:LeftButton" description="Bar 4 Button 5" />
+	<Binding name="CLICK ABTWidbar4button6Button:LeftButton" description="Bar 4 Button 6" />
+	<Binding name="CLICK ABTWidbar4button7Button:LeftButton" description="Bar 4 Button 7" />
+	<Binding name="CLICK ABTWidbar4button8Button:LeftButton" description="Bar 4 Button 8" />
+	<Binding name="CLICK ABTWidbar4button9Button:LeftButton" description="Bar 4 Button 9" />
+	<Binding name="CLICK ABTWidbar4button10Button:LeftButton" description="Bar 4 Button 10" />
+	<Binding name="CLICK ABTWidbar4button11Button:LeftButton" description="Bar 4 Button 11" />
+	<Binding name="CLICK ABTWidbar4button12Button:LeftButton" description="Bar 4 Button 12" />
+
+</Bindings>
