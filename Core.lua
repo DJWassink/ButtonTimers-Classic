@@ -1201,7 +1201,7 @@ ABT.OnUpdate = function(button, elapsed)
 				if remaining == math.huge then
 					button.countdown:SetText(strInfinity)
 				elseif remaining > 10 then
-					button.countdown:SetFormattedText(SecondsToTimeAbbrev(remaining))
+					button.countdown:SetText(format(SecondsToTimeAbbrev(remaining)):gsub("%s+", ""))
 				else
 					button.countdown:SetFormattedText("%.1f", remaining)
 				end
@@ -1235,7 +1235,7 @@ ABT.OnUpdate = function(button, elapsed)
 				if remaining == math.huge then
 					button.timer:SetText(strInfinity)
 				elseif remaining > 10 then
-					button.timer:SetFormattedText(SecondsToTimeAbbrev(remaining))
+					button.timer:SetText(format(SecondsToTimeAbbrev(remaining)):gsub("%s+", ""))
 				else
 					button.timer:SetFormattedText("%.1f", remaining)
 				end
@@ -1843,6 +1843,9 @@ function ABT:SetBar (barIdx)
 			if barFont then
 --				ABT:DebugPrint ("font="..ABT:NS(barFont))
 				local fontHeight = height / 2
+				if orientation == ABT_HORIZONTAL then
+					fontHeight = height / 2.8
+				end
 				button.timer:SetFont (barFont, fontHeight)
 				button.countdown:SetFont (barFont, fontHeight)
 				button.spellName:SetFont (barFont, fontHeight)
@@ -1897,8 +1900,8 @@ function ABT:SetBar (barIdx)
 					button.tex.reverse = false
 					button.status:SetPoint("BOTTOMLEFT", button:GetName(), "TOPLEFT")
 					button.tex:SetPoint("BOTTOM", button.status:GetName(), "BOTTOM", 0, 3)
-					button.countdown:SetPoint("BOTTOMLEFT", button.status:GetName(), "BOTTOMLEFT", 0, 14)
-					button.spellName:SetPoint("BOTTOMLEFT", button.status:GetName(), "BOTTOMLEFT", 0, 32)
+					button.countdown:SetPoint("BOTTOM", button.status:GetName(), "BOTTOM", 0, 14)
+					button.spellName:SetPoint("BOTTOM", button.status:GetName(), "BOTTOM", 0, 32)
 				elseif location == ABT_BOTTOMLEFT then
 					button.tex.reverse = true
 					button.status:SetPoint("TOPLEFT", button:GetName(), "BOTTOMLEFT")
@@ -1913,6 +1916,13 @@ function ABT:SetBar (barIdx)
 			button:ClearAllPoints()
 			button:SetPoint ("TOPLEFT", x, y)
 	
+			button.button.Border:Hide();
+			button.button.HotKey:Hide();
+			button.button.NewActionTexture:Hide();
+			button.button.Name:Hide();
+			button.button.NormalTexture:Hide();
+			button.button.FlyoutBorderShadow:Hide();
+			button.button.FlyoutBorder:Hide();
 			if locked then
 				bar.texture:Hide()
 			else
