@@ -1,0 +1,12 @@
+tag bf6bfbea64cae43d5dca450295f3215d46df38fc v1.22.0
+Author:	Kyle Buller <bullerk@gmail.com>
+Date:	Sat Sep 10 21:43:55 2022 -0500
+
+Tagging as v1.22.0
+
+commit fe72384ee6572db20a9a69afb5fc702049204c89
+Author: Kyle Buller <bullerk@gmail.com>
+Date:   Sat Sep 10 21:04:48 2022 -0500
+
+    Hopeful fix for bad Wrath compat/leaked globals
+
