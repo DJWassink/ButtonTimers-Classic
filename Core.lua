@@ -13,7 +13,7 @@ local _G, ABT, LibStub, DEFAULT_CHAT_FRAME, UIParent = _G, ABT, LibStub, DEFAULT
 local math, min, modf, print, setglobal, type = math, math.min, math.modf, print, setglobal, type
 local ipairs, next, pairs, rawset, select, setmetatable, tinsert, unpack = ipairs, next, pairs, rawset, select, setmetatable, tinsert, unpack
 local format, gmatch, gsub, strfind, strmatch, tonumber, tostring = format, gmatch, gsub, strfind, strmatch, tonumber, tostring
-local CreateFrame, GameTooltip, GetActiveSpecGroup, GetNumGroupMembers, GetTime, InCombatLockdown, InterfaceOptionsFrame_OpenToCategory, IsInRaid, SecondsToTimeAbbrev, UnitBuff, UnitDebuff, UnitGUID, UnitName = CreateFrame, GameTooltip, GetActiveSpecGroup, GetNumGroupMembers, GetTime, InCombatLockdown, InterfaceOptionsFrame_OpenToCategory, IsInRaid, SecondsToTimeAbbrev, UnitBuff, UnitDebuff, UnitGUID, UnitName
+local ActionButton_OnEvent, CreateFrame, GameTooltip, GetActiveSpecGroup, GetNumGroupMembers, GetTime, InCombatLockdown, InterfaceOptionsFrame_OpenToCategory, IsInRaid, SecondsToTimeAbbrev, UnitBuff, UnitDebuff, UnitGUID, UnitName = ActionButton_OnEvent, CreateFrame, GameTooltip, GetActiveSpecGroup, GetNumGroupMembers, GetTime, InCombatLockdown, InterfaceOptionsFrame_OpenToCategory, IsInRaid, SecondsToTimeAbbrev, UnitBuff, UnitDebuff, UnitGUID, UnitName
 local GetActionCharges, GetActionCooldown, GetActionInfo, GetActionText, GetActionTexture, GetItemInfo, GetItemSpell, GetMacroItem, GetMacroSpell, GetSpellCharges, GetSpellCooldown, GetSpellInfo, GetTotemInfo = GetActionCharges, GetActionCooldown, GetActionInfo, GetActionText, GetActionTexture, GetItemInfo, GetItemSpell, GetMacroItem, GetMacroSpell, GetSpellCharges, GetSpellCooldown, GetSpellInfo, GetTotemInfo
 
 
@@ -209,7 +209,7 @@ end
 -- This function will, if necessary, return a reduced value for buttonCount
 -- to ensure that we aren't referencing an invalid action slot.
 function ABT:GetUsableButtonCount(barIdx)
-	local available = 120 - ABT:GetValue(barIdx, nil, "actionOffset")
+	local available = 120 -  ABT:GetValue(barIdx, nil, "actionOffset")
 	local requested = ABT:GetValue(barIdx, nil, "buttonCount")
 	return min(available, requested)
 end
@@ -1083,7 +1083,7 @@ function ABT:ApplyDefault (event, slot)
         if slot == button.button:GetAttribute("action") then
             -- found one
             ABT:DebugPrint ("Slot "..slot.." used on bar="..barIdx.." button="..buttonIdx)
-            button.button:OnEvent(event, slot)
+            ActionButton_OnEvent(button, event, slot)
             
             local actionType, actionId = GetActionInfo(slot)
             -- only apply defaults if it actually changed

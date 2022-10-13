@@ -1,4 +1,4 @@
-## Interface: 90200
+## Interface: 30400
 ## Title: ButtonTimers
 ## Notes: Action bars, with timers
 ## Author: Misen, Stencil
