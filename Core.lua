@@ -100,6 +100,7 @@ local tblDefaultsButton = {
 	colorChange = nil,  -- "Warn < cast time."
 	castTimeAdjust = "0",
 	timerColor = { 0, 1, 1, .5 },
+	othersTimerColor = { 0, 1, 1, .5 },
 	textColor = { 1, 1, 0, 1 },
 	timerWarnColor = { 1, 0, 0, .5 },
 	timerAdjust = "0",
@@ -432,6 +433,15 @@ local buttonOptions = {
 			order = 70,
             name = L["Bar Color"],
             desc = L["Bar color for timers"],
+            type = "color",
+			hasAlpha = true,
+            set = function (info, r, g, b, a) return ABT:setFunc (info, {r, g, b, a}) end,
+            get = function (info) return unpack(ABT:getFunc(info)) end
+        },
+		othersTimerColor = {
+			order = 70,
+            name = L["Others Bar Color"],
+            desc = L["Bar color for timers casted by others"],
             type = "color",
 			hasAlpha = true,
             set = function (info, r, g, b, a) return ABT:setFunc (info, {r, g, b, a}) end,
@@ -1482,6 +1492,7 @@ function ABT:GetDebuffs(event, arg1)
 
 			-- now look for an aura to show for this button
 			local auraFound = nil -- haven't yet found a match for this button
+			local isMine = false -- haven't determined yet
 			-- the loops counts down from the last entry in Other Auras box to the first and then the action slot as appropriate
 			for i = #button.auraList, (not ignoreButtonAura and button.auraList[0]) and 0 or 1, -1 do
 				local effect = button.auraList[i]
@@ -1501,6 +1512,7 @@ function ABT:GetDebuffs(event, arg1)
 						-- was not previously found. This will prioritize our own spells for display if multiple
 						-- matching effects are found
 						g_iconCache[aura.name] = aura.iconTexture
+						isMine = (aura.caster == "player" or aura.caster == "pet" or aura.caster == "vehicle" or (aura.caster == nil and target == "player"))
 						local isMine = (aura.caster == "player" or aura.caster == "pet" or aura.caster == "vehicle" or (aura.caster == nil and target == "player"))
 						if (isMine or (showOthers and not auraFound)) then
 							auraFound = aura
@@ -1541,7 +1553,11 @@ function ABT:GetDebuffs(event, arg1)
 							button.tex.max = auraFound.duration
 						end
 						if button.tex.timerColor then
-							button.tex:SetVertexColor(unpack(button.tex.timerColor))
+							if (not isMine and button.tex.othersTimerColor) then
+								button.tex:SetVertexColor(unpack(button.tex.othersTimerColor))
+							else
+								button.tex:SetVertexColor(unpack(button.tex.timerColor))
+							end
 						end
 						if button.tex.warnColor then
 							button.castTime = ABT:GetCastTime(button) + (tonumber(ABT:GetValue(barIdx, buttonIdx, "castTimeAdjust")) or 0)
@@ -1808,12 +1824,14 @@ function ABT:SetBar (barIdx)
 			local statusbarTexture = barTexture or "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar"
 --			ABT:DebugPrint ("statusbarTexture="..statusbarTexture)
 			local timerColor = ABT:GetValue (barIdx, buttonIdx, "timerColor")
+			local othersTimerColor = ABT:GetValue (barIdx, buttonIdx, "othersTimerColor")
 			local textColor = ABT:GetValue (barIdx, buttonIdx, "textColor")
 			local warnColor = ABT:GetValue (barIdx, buttonIdx, "timerWarnColor")
 			local colorChange = ABT:GetValue (barIdx, buttonIdx, "colorChange")
 			local timerType = ABT:GetValue (barIdx, buttonIdx, "timerType")
 			
 			button.tex.timerColor = timerColor
+			button.tex.othersTimerColor = othersTimerColor
 			button.tex:SetTexture(statusbarTexture)
 			if colorChange and warnColor and (timerType == ABT_AURA or timerType == ABT_BOTH) then
 				button.tex.warnColor = warnColor
